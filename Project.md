@@ -301,29 +301,28 @@ Notice the -p flag in this command, which will prompt us for the password used w
 mysql> SHOW DATABASES;
 ```
 This gave us the following output:
+![](https://github.com/Omolade11/LempStack_AWS/blob/main/Images/Screenshot%202022-11-29%20at%2020.53.11.png)
+
+Next, we’ll create a test table named todo_list. From the MySQL console, we will run the following statement:
+```
+CREATE TABLE example_database.todo_list (
+ 	item_id INT AUTO_INCREMENT,
+ 	content VARCHAR(255),
+ 	PRIMARY KEY(item_id)
+ );
+```
+Insert a few rows of content in the test table. We might want to repeat the next command a few times, using different VALUES:
+```
+mysql> INSERT INTO example_database.todo_list (content) VALUES ("My first important item");
+```
+To confirm that the data was successfully saved to your table, run:
+```
+mysql> SELECT * FROM example_database.todo_list;
+```
+This gave us the following output:
 ![]()
 
-Next, we’ll create a test table named todo_list. From the MySQL console, run the following statement:
-CREATE TABLE example_database.todo_list (
-mysql> 	item_id INT AUTO_INCREMENT,
-mysql> 	content VARCHAR(255),
-mysql> 	PRIMARY KEY(item_id)
-mysql> );
-Insert a few rows of content in the test table. You might want to repeat the next command a few times, using different VALUES:
-mysql> INSERT INTO example_database.todo_list (content) VALUES ("My first important item");
-To confirm that the data was successfully saved to your table, run:
-mysql> SELECT * FROM example_database.todo_list;
-You’ll see the following output:
-Output
-+---------+--------------------------+
-| item_id | content              	|
-+---------+--------------------------+
-|   	1 | My first important item  |
-|   	2 | My second important item |
-|   	3 | My third important item  |
-|   	4 | and this one more thing  |
-+---------+--------------------------+
-4 rows in set (0.000 sec)
+
 After confirming that you have valid data in your test table, you can exit the MySQL console:
 mysql> exit
 Now you can create a PHP script that will connect to MySQL and query for your content. Create a new PHP file in your custom web root directory using your preferred editor. We’ll use vi for that:
