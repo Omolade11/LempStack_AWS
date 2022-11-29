@@ -320,15 +320,20 @@ To confirm that the data was successfully saved to your table, run:
 mysql> SELECT * FROM example_database.todo_list;
 ```
 This gave us the following output:
-![]()
+![](https://github.com/Omolade11/LempStack_AWS/blob/main/Images/Screenshot%202022-11-29%20at%2021.05.24.png)
 
-
-After confirming that you have valid data in your test table, you can exit the MySQL console:
+After confirming that we have valid data in our test table, we can exit the MySQL console:
+```
 mysql> exit
-Now you can create a PHP script that will connect to MySQL and query for your content. Create a new PHP file in your custom web root directory using your preferred editor. We’ll use vi for that:
+```
+Now we can create a PHP script that will connect to MySQL and query for our content. We will create a new PHP file in our custom web root directory using our preferred editor. We’ll use vi for that:
+```
 nano /var/www/projectLEMP/todo_list.php
+```
 The following PHP script connects to the MySQL database and queries for the content of the todo_list table, displays the results in a list. If there is a problem with the database connection, it will throw an exception.
-Copy this content into your todo_list.php script:
+We will copy this content into our todo_list.php script:
+
+```
 <?php
 $user = "example_user";
 $password = "password";
@@ -346,9 +351,13 @@ try {
 	print "Error!: " . $e->getMessage() . "<br/>";
 	die();
 }
-Save and close the file when you are done editing.
-You can now access this page in your web browser by visiting the domain name or public IP address configured for your website, followed by /todo_list.php:
+```
+
+We will thereafter save and close the file after editing.
+We can now access this page in your web browser by visiting the domain name or public IP address configured for your website, followed by /todo_list.php:
+```
 http://<Public_domain_or_IP>/todo_list.php
-You should see a page like this, showing the content you’ve inserted in your test table:
-That means your PHP environment is ready to connect and interact with your MySQL server.
+```
+We should see a page like this, showing the content we’ve inserted in our test table:
+That means our PHP environment is ready to connect and interact with our MySQL server.
  
