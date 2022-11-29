@@ -227,4 +227,30 @@ http://<Public-DNS-Name>:80
 We can leave this file in place as a temporary landing page for our application until we set up an index.php file to replace it. Once we do that, remember to remove or rename the index.html file from our document root, as it would take precedence over an index.php file by default.
 Our LEMP stack is now fully configured. In the next step, we’ll create a PHP script to test that Nginx is in fact able to handle .php files within our newly configured website.
 
+## TESTING PHP WITH NGINX
+
+We can test our LEMP stack to validate that Nginx can correctly hand .php files off to our PHP processor.
+We can do this by creating a test PHP file in our document root. We will open a new file called info.php within our document root in our text editor:
+```
+sudo nano /var/www/projectLEMP/info.php
+```
+Type or paste the following lines into the new file. This is valid PHP code that will return information about your server:
+```
+<?php
+phpinfo();
+```
+We can now access this page in our web browser by visiting the domain name or public IP address we’ve set up in our Nginx configuration file, followed by "/info.php":
+```
+http://`server_domain_or_IP`/info.php
+```
+The image below is the result it displays
+![]()
+
+The result is a web page containing detailed information about our server:
+After checking the relevant information about our PHP server through that page, it’s best to remove the file we created as it contains sensitive information about our PHP environment and our Ubuntu server. We can use rm to remove the file:
+```
+sudo rm /var/www/your_domain/info.php
+```
+More so, we can always regenerate this file if we need it later.
+
 
