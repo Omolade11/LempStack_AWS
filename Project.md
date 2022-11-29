@@ -79,3 +79,59 @@ curl -s http://169.254.169.254/latest/meta-data/public-ipv4
 The URL in browser shall also work if we do not specify port number since all web browsers use port 80 by default.
 For us to see the page below, it means our web server is now correctly installed and accessible through our firewall.
 In fact, it is the same content that we previously got by ‘curl’ command. But this time, it is represented in nice HTML formatting by our web browser.
+![nginx display](https://github.com/Omolade11/LempStack_AWS/blob/main/Images/Screenshot%202022-11-29%20at%2018.54.10.png)
+
+## INSTALLING MYSQL
+Now that we have a web server up and running, we need to install a Database Management System (DBMS) to be able to store and manage data for our site in a relational database. MySQL is a popular relational database management system used within PHP environments, so we will use it in our project.
+ 
+ ```
+ sudo apt install mysql-server
+ ```
+ 
+ When prompted, confirm installation by typing Y, and then ENTER.
+ 
+ Login to the MYSQL console by typing:
+ ```
+ sudo mysql
+ ```
+ It will connect to the MySQL server as the administrative database user root
+ 
+![SQL]()
+
+ Here, we will set a password for the root user, using mysql_native_password as default authentication method. We’re defining this user’s password as Omolade.9.
+ ```
+ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Omolade.9'; 
+```
+ 
+ We will exit the MySQL shell with the exit command:
+ 
+``` 
+ mysql> exit 
+ ```
+ 
+Afterward, Start the interactive script by running:
+``` 
+sudo mysql_secure_installation
+```
+ 
+This will ask if you want to configure the VALIDATE PASSWORD PLUGIN.
+If enabled, passwords which don’t match the specified criteria will be rejected by MySQL with an error. It is safe to leave validation disabled, but you should always use strong, unique passwords for database credentials.
+Answer Y for yes, or anything else to continue without enabling.
+
+ If you answer “yes”, you’ll be asked to select a level of password validation. Keep in mind that if you enter 2 for the strongest level, you will receive errors when attempting to set any password which does not contain numbers, upper and lowercase letters, and special characters, or which is based on common dictionary words e.g., PassWord.1.
+
+ When you’re finished, test if you’re able to log in to the MySQL console by typing:
+```
+ sudo mysql -p
+```
+ 
+ To exit the MySQL console, type:
+```
+ mysql> exit
+```
+ Our MySQL server is now installed and secured. Next, we will install PHP, the final component in the LAMP stack.
+
+
+
+
+
