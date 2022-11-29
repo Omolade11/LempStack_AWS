@@ -9,4 +9,4 @@ This Project is showing the deployment of a LEMP stack website using:
 4. MySQL database
 5. PHP
 
-![Screenshot 2022-11-24 at 18 56 27](https://user-images.githubusercontent.com/55920110/203844468-29c77241-0ff0-44e8-a4e6-83fa26e3667f.png)
+![](https://github.com/Omolade11/LempStack_AWS/blob/main/Images/Screenshot%202022-11-29%20at%2021.50.35.png)
