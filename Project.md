@@ -215,11 +215,16 @@ sudo echo 'Hello LEMP from hostname' $(curl -s http://169.254.169.254/latest/met
 ```
 
 Now, we would go to our browser and try to open our website URL using IP address:
+```
 http://<Public-IP-Address>:80
+```
+![](https://github.com/Omolade11/LempStack_AWS/blob/main/Images/Screenshot%202022-11-29%20at%2019.54.22.png)
 	
-If you see the text from ‘echo’ command you wrote to index.html file, then it means your Nginx site is working as expected. In the output you will see your server’s public hostname (DNS name) and public IP address. You can also access your website in your browser by public DNS name, not only by IP – try it out, the result must be the same (port is optional)
+From the result we got above, it means our Nginx site is working as expected. In the output we will see our server’s public hostname (DNS name) and public IP address. You can also access our website in our browser by public DNS name, not only by IP – try it out, the result must be the same (port is optional)
+```
 http://<Public-DNS-Name>:80
-You can leave this file in place as a temporary landing page for your application until you set up an index.php file to replace it. Once you do that, remember to remove or rename the index.html file from your document root, as it would take precedence over an index.php file by default.
-Your LEMP stack is now fully configured. In the next step, we’ll create a PHP script to test that Nginx is in fact able to handle .php files within your newly configured website.
+```
+We can leave this file in place as a temporary landing page for our application until we set up an index.php file to replace it. Once we do that, remember to remove or rename the index.html file from our document root, as it would take precedence over an index.php file by default.
+Our LEMP stack is now fully configured. In the next step, we’ll create a PHP script to test that Nginx is in fact able to handle .php files within our newly configured website.
 
 
