@@ -359,6 +359,6 @@ We can now access this page in your web browser by visiting the domain name or p
 http://<Public_domain_or_IP>/todo_list.php
 ```
 We should see a page like this, showing the content we’ve inserted in our test table:
-![](/todo_list.php)
+![](https://github.com/Omolade11/LempStack_AWS/blob/main/Images/Screenshot%202022-11-29%20at%2021.50.35.png)
 That means our PHP environment is ready to connect and interact with our MySQL server.
  
