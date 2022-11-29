@@ -198,3 +198,28 @@ This will tell Nginx to use the configuration next time it is reloaded. We can t
 sudo nginx -t
 ```
 We will see the following message:
+![](https://github.com/Omolade11/LempStack_AWS/blob/main/Images/Screenshot%202022-11-29%20at%2019.46.54.png)
+
+If any errors were reported, we would have had to go back to our configuration file to review its contents before continuing.
+We also need to disable default Nginx host that is currently configured to listen on port 80. For this, we would run:
+```
+sudo unlink /etc/nginx/sites-enabled/default
+```
+When we are ready, we would reload Nginx to apply the changes:
+```
+sudo systemctl reload nginx
+```
+Our new website is now active, but the web root /var/www/projectLEMP is still empty. we would create an index.html file in that location so that we can test that our new server block works as expected:
+```
+sudo echo 'Hello LEMP from hostname' $(curl -s http://169.254.169.254/latest/meta-data/public-hostname) 'with public IP' $(curl -s http://169.254.169.254/latest/meta-data/public-ipv4) > /var/www/projectLEMP/index.html
+```
+
+Now, we would go to our browser and try to open our website URL using IP address:
+http://<Public-IP-Address>:80
+	
+If you see the text from ‘echo’ command you wrote to index.html file, then it means your Nginx site is working as expected. In the output you will see your server’s public hostname (DNS name) and public IP address. You can also access your website in your browser by public DNS name, not only by IP – try it out, the result must be the same (port is optional)
+http://<Public-DNS-Name>:80
+You can leave this file in place as a temporary landing page for your application until you set up an index.php file to replace it. Once you do that, remember to remove or rename the index.html file from your document root, as it would take precedence over an index.php file by default.
+Your LEMP stack is now fully configured. In the next step, we’ll create a PHP script to test that Nginx is in fact able to handle .php files within your newly configured website.
+
+
