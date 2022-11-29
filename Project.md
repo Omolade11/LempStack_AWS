@@ -96,7 +96,7 @@ Now that we have a web server up and running, we need to install a Database Mana
  ```
  It will connect to the MySQL server as the administrative database user root
  
-![SQL]()
+![SQL](https://github.com/Omolade11/LempStack_AWS/blob/main/Images/Screenshot%202022-11-29%20at%2019.15.21.png)
 
  Here, we will set a password for the root user, using mysql_native_password as default authentication method. We’re defining this user’s password as Omolade.9.
  ```
@@ -132,6 +132,69 @@ Answer Y for yes, or anything else to continue without enabling.
  Our MySQL server is now installed and secured. Next, we will install PHP, the final component in the LAMP stack.
 
 
+## INSTALLING PHP
+We have Nginx installed to serve your content and MySQL installed to store and manage our data. Now we can install PHP to process code and generate dynamic content for the web server.
 
+While Apache embeds the PHP interpreter in each request, Nginx requires an external program to handle PHP processing and act as a bridge between the PHP interpreter itself and the web server. This allows for a better overall performance in most PHP-based websites, but it requires additional configuration. We’ll need to install php-fpm, which stands for “PHP fastCGI process manager”, and tell Nginx to pass PHP requests to this software for processing. Additionally, we’ll need php-mysql, a PHP module that allows PHP to communicate with MySQL-based databases. Core PHP packages will automatically be installed as dependencies.
+To install these 2 packages at once, we will run:
+```
+sudo apt install php-fpm php-mysql
+```
+When prompted, type Y and press ENTER to confirm installation.
+You now have your PHP components installed. Next, you will configure Nginx to use them.
 
+## CONFIGURING NGINX TO USE PHP PROCESSOR
 
+When using the Nginx web server, we can create server blocks (similar to virtual hosts in Apache) to encapsulate configuration details and host more than one domain on a single server. In this guide, we will use project LEMP as an example domain name.
+
+On Ubuntu 20.04, Nginx has one server block enabled by default and is configured to serve documents out of a directory at /var/www/html. While this works well for a single site, it can become difficult to manage if we are hosting multiple sites. Instead of modifying /var/www/html, we’ll create a directory structure within /var/www for our domain website, leaving /var/www/html in place as the default directory to be served if a client request does not match any other sites.
+Create the root web directory for our domain as follows:
+```
+sudo mkdir /var/www/projectLEMP
+```
+Next, we will be assigning ownership of the directory with our current system user:
+ 
+ ```
+  sudo chown -R $USER:$USER /var/www/projectLEMP
+```
+ Then, we will create and open a new configuration file in Nginx’s sites-available directory using our preferred command-line editor. Here, we’ll be using nano:
+ 
+ ```
+sudo nano /etc/nginx/sites-available/projectLEMP
+```
+This will create a new blank file. Paste in the following bare-bones configuration:
+```
+#/etc/nginx/sites-available/projectLEMP
+ 
+server {
+	listen 80;
+	server_name projectLEMP www.projectLEMP;
+	root /var/www/projectLEMP;
+ 
+	index index.html index.htm index.php;
+ 
+	location / {
+    	try_files $uri $uri/ =404;
+	}
+ 
+	location ~ \.php$ {
+    	include snippets/fastcgi-php.conf;
+    	fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
+ 	}
+ 
+	location ~ /\.ht {
+    	deny all;
+	}
+ 
+}
+```
+When using nano, we can do so by typing CTRL+X and then y and ENTER to confirm.
+We will activate our configuration by linking to the config file from Nginx’s sites-enabled directory:
+```
+sudo ln -s /etc/nginx/sites-available/projectLEMP /etc/nginx/sites-enabled/
+```
+This will tell Nginx to use the configuration next time it is reloaded. We can test our configuration for syntax errors by typing:
+```
+sudo nginx -t
+```
+We will see the following message:
